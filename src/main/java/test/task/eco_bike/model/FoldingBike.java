@@ -17,4 +17,13 @@ public class FoldingBike extends Bike {
     private Long sizeOfTheWheels;
     @NotNull
     private Long numberOfGears;
+
+    @Override
+    public String toString() {
+        return "FoldingBike{" +
+                "id=" + id +
+                ", sizeOfTheWheels=" + sizeOfTheWheels +
+                ", numberOfGears=" + numberOfGears +
+                "} " + super.toString();
+    }
 }

@@ -4,9 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import test.task.eco_bike.model.EBike;
 import test.task.eco_bike.model.FoldingBike;
 import test.task.eco_bike.model.Speedelec;
@@ -16,6 +15,8 @@ import test.task.eco_bike.service.FoldingBikeService;
 import test.task.eco_bike.service.ReadFromFileService;
 import test.task.eco_bike.service.SpeedelecService;
 
+@AllArgsConstructor
+@Service
 public class ReadFromFileServiceImpl implements ReadFromFileService {
     private static final String SPEEDELEC_NAME = "SPEEDELEC";
     private static final String E_BIKE_NAME = "E-BIKE";
@@ -38,7 +39,7 @@ public class ReadFromFileServiceImpl implements ReadFromFileService {
 
     private void addBikeFromLine(String line) {
         String[] fields = line.substring(SPEEDELEC_NAME.length() + 1).split("; ");
-        if(line.contains(SPEEDELEC_NAME)) {
+        if (line.contains(SPEEDELEC_NAME)) {
             Speedelec speedelec = (Speedelec) getElectricBikeFromFields(fields, new Speedelec());
             speedelecService.add(speedelec);
         } else if (line.contains(E_BIKE_NAME)) {
