@@ -11,8 +11,4 @@ import test.task.eco_bike.model.abstraction.ElectricBike;
 public class EBike extends ElectricBike {
     @Id
     private Long Id;
-    @NotNull
-    private Long maxSpeed;
-    @NotNull
-    private Long BatteryCapacity;
 }
