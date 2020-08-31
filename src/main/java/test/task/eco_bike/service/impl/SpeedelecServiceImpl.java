@@ -21,7 +21,8 @@ public class SpeedelecServiceImpl implements SpeedelecService {
 
     @Override
     public Speedelec getByParams(SpeedelecRequestDto speedelecRequestDto) {
-        Speedelec speedelec = new Speedelec();/** Need to create Mappers*/
+        /** Need to create Mappers*/
+        Speedelec speedelec = new Speedelec();
         return speedelecRepository.findOne(Example.of(speedelec))
                 .orElseThrow(() -> new RuntimeException("Can not find speedelec by params"));
     }
