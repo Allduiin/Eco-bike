@@ -10,5 +10,5 @@ public abstract class BikeResponseDto {
     @NotNull
     private Long price;
     @NotNull
-    private boolean availabilityOfLights;
+    private Boolean availabilityOfLights;
 }

@@ -25,6 +25,6 @@ public class EBikeServiceImpl implements EBikeService {
 
     @Override
     public List<EBike> getAll() {
-        return null;
+        return ebikeRepository.findAll();
     }
 }
