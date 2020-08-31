@@ -1,10 +1,11 @@
 package test.task.eco_bike.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import test.task.eco_bike.model.abstraction.ElectricBike;
 
 @EqualsAndHashCode(callSuper = true)
@@ -12,6 +13,7 @@ import test.task.eco_bike.model.abstraction.ElectricBike;
 @Entity
 public class Speedelec extends ElectricBike {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Override

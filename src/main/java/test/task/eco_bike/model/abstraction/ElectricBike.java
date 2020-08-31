@@ -1,11 +1,13 @@
 package test.task.eco_bike.model.abstraction;
 
 import com.sun.istack.NotNull;
+import javax.persistence.MappedSuperclass;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@MappedSuperclass
 public abstract class ElectricBike extends Bike {
     @NotNull
     private Long maxSpeed;
