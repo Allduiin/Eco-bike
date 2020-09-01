@@ -2,6 +2,7 @@ package test.task.ecobike.mapper;
 
 import org.springframework.stereotype.Component;
 import test.task.ecobike.model.FoldingBike;
+import test.task.ecobike.model.dto.request.FoldingBikeRequestDto;
 import test.task.ecobike.model.dto.response.FoldingBikeResponseDto;
 
 @Component
@@ -23,5 +24,17 @@ public class FoldingBikeMapper {
                 + (dto.getAvailabilityOfLights() ? "no" : "")
                 + " head/tail light.\n" + "Price: " + dto.getPrice()
                 + " euros.";
+    }
+
+    public FoldingBike getFoldingBikeFromFoldingBikeRequest(FoldingBikeRequestDto foldingBikeRequestDto) {
+        FoldingBike foldingBike = new FoldingBike();
+        foldingBike.setBrand(foldingBikeRequestDto.getBrand());
+        foldingBike.setPrice(foldingBikeRequestDto.getPrice());
+        foldingBike.setColor(foldingBikeRequestDto.getColor());
+        foldingBike.setWeight(foldingBikeRequestDto.getWeight());
+        foldingBike.setAvailabilityOfLights(foldingBikeRequestDto.getAvailabilityOfLights());
+        foldingBike.setNumberOfGears(foldingBikeRequestDto.getNumberOfGears());
+        foldingBike.setSizeOfTheWheels(foldingBikeRequestDto.getSizeOfTheWheels());
+        return foldingBike;
     }
 }

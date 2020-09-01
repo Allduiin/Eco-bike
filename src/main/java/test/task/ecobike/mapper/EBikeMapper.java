@@ -2,6 +2,7 @@ package test.task.ecobike.mapper;
 
 import org.springframework.stereotype.Component;
 import test.task.ecobike.model.EBike;
+import test.task.ecobike.model.dto.request.EBikeRequestDto;
 import test.task.ecobike.model.dto.response.EBikeResponseDto;
 
 @Component
@@ -23,5 +24,17 @@ public class EBikeMapper {
                 + (dto.getAvailabilityOfLights() ? "no" : "")
                 + " head/tail light.\n" + "Price: " + dto.getPrice()
                 + " euros.";
+    }
+
+    public EBike getEBikeFromEBikeRequestDto(EBikeRequestDto ebikeRequestDto) {
+        EBike bike = new EBike();
+        bike.setBrand(ebikeRequestDto.getBrand());
+        bike.setPrice(ebikeRequestDto.getPrice());
+        bike.setColor(ebikeRequestDto.getColor());
+        bike.setWeight(ebikeRequestDto.getWeight());
+        bike.setAvailabilityOfLights(ebikeRequestDto.getAvailabilityOfLights());
+        bike.setBatteryCapacity(ebikeRequestDto.getBatteryCapacity());
+        bike.setMaxSpeed(ebikeRequestDto.getMaxSpeed());
+        return bike;
     }
 }

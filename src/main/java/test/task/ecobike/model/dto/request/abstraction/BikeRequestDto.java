@@ -9,6 +9,6 @@ public abstract class BikeRequestDto {
     private String brand;
     private Long price;
     private String color;
-    private boolean availabilityOfLights;
+    private Boolean availabilityOfLights;
     private Long weight;
 }
