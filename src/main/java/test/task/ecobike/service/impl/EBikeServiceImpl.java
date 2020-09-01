@@ -2,6 +2,7 @@ package test.task.ecobike.service.impl;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import test.task.ecobike.mapper.EBikeMapper;
 import test.task.ecobike.model.EBike;
@@ -23,7 +24,7 @@ public class EBikeServiceImpl implements EBikeService {
     @Override
     public List<EBike> getByParams(EBikeRequestDto ebikeRequestDto) {
         EBike ebike = ebikeMapper.getEBikeFromEBikeRequestDto(ebikeRequestDto);
-        return null;
+        return ebikeRepository.findAll(Example.of(ebike));
     }
 
     @Override
