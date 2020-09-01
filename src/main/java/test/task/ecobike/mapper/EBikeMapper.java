@@ -20,7 +20,7 @@ public class EBikeMapper {
         EBikeResponseDto dto = getEBikeResponseDtoFromEBike(ebike);
         return "E-BIKE " + dto.getBrand() + " with "
                 + dto.getBatteryCapacity() + " mAh battery and "
-                + ((dto.getAvailabilityOfLights()) ? "no" : "")
+                + (dto.getAvailabilityOfLights() ? "no" : "")
                 + " head/tail light.\n" + "Price: " + dto.getPrice()
                 + " euros.";
     }

@@ -38,14 +38,16 @@ public class ReadFromFileServiceImpl implements ReadFromFileService {
     }
 
     private void addBikeFromLine(String line) {
-        String[] fields = line.substring(SPEEDELEC_NAME.length() + 1).split("; ");
         if (line.contains(SPEEDELEC_NAME)) {
+            String[] fields = line.substring(SPEEDELEC_NAME.length() + 1).split("; ");
             Speedelec speedelec = (Speedelec) getElectricBikeFromFields(fields, new Speedelec());
             speedelecService.add(speedelec);
         } else if (line.contains(E_BIKE_NAME)) {
+            String[] fields = line.substring(E_BIKE_NAME.length() + 1).split("; ");
             EBike ebike = (EBike) getElectricBikeFromFields(fields, new EBike());
             ebikeService.add(ebike);
         } else if (line.contains(FOLDING_BIKE_NAME)) {
+            String[] fields = line.substring(FOLDING_BIKE_NAME.length() + 1).split("; ");
             FoldingBike bike = new FoldingBike();
             bike.setBrand(fields[0]);
             bike.setSizeOfTheWheels(Long.parseLong(fields[1]));

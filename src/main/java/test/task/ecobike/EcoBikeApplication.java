@@ -12,7 +12,7 @@ public class EcoBikeApplication {
     public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext run = SpringApplication.run(EcoBikeApplication.class, args);
         run.getBean(ReadFromFileService.class)
-                .read("D:\\Java\\ecobike\\src\\main\\resources\\TestFile.txt");
+                .read("D:\\Java\\ecobike\\src\\main\\resources\\ecobike.txt");
         run.getBean(MainService.class).showCatalog();
     }
 }
