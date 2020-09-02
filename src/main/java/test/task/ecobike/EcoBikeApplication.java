@@ -13,6 +13,8 @@ import test.task.ecobike.service.FoldingBikeService;
 import test.task.ecobike.service.MainService;
 import test.task.ecobike.service.ReadFromFileService;
 import test.task.ecobike.service.SpeedelecService;
+import test.task.ecobike.service.main.AddNewBikeService;
+import test.task.ecobike.service.main.ShowCatalogService;
 
 @SpringBootApplication
 public class EcoBikeApplication {
@@ -20,20 +22,13 @@ public class EcoBikeApplication {
         ConfigurableApplicationContext run = SpringApplication.run(EcoBikeApplication.class, args);
         run.getBean(ReadFromFileService.class)
                 .read("D:\\Java\\ecobike\\src\\main\\resources\\TestFile.txt");
-        FoldingBikeService foldingBikeService = run.getBean(FoldingBikeService.class);
-        SpeedelecService speedelecService = run.getBean(SpeedelecService.class);
-        EBikeService ebikeService = run.getBean(EBikeService.class);
 
-        FoldingBikeRequestDto foldingBikeRequestDto = new FoldingBikeRequestDto();
-        foldingBikeRequestDto.setAvailabilityOfLights(true);
-        System.out.println(foldingBikeService.getByParams(foldingBikeRequestDto));
+        ShowCatalogService showCatalogService = run.getBean(ShowCatalogService.class);
+        showCatalogService.showCatalog();
 
-        EBikeRequestDto ebikeRequestDto = new EBikeRequestDto();
-        ebikeRequestDto.setAvailabilityOfLights(true);
-        System.out.println(ebikeService.getByParams(ebikeRequestDto));
+        AddNewBikeService addNewBikeService = run.getBean(AddNewBikeService.class);
+        addNewBikeService.addNewBike();
 
-        SpeedelecRequestDto speedelecRequestDto = new SpeedelecRequestDto();
-        speedelecRequestDto.setAvailabilityOfLights(true);
-        System.out.println(speedelecService.getByParams(speedelecRequestDto));
+
     }
 }
