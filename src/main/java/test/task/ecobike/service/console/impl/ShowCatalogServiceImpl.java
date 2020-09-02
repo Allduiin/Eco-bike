@@ -1,4 +1,4 @@
-package test.task.ecobike.service.main.impl;
+package test.task.ecobike.service.console.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import test.task.ecobike.model.Speedelec;
 import test.task.ecobike.service.EBikeService;
 import test.task.ecobike.service.FoldingBikeService;
 import test.task.ecobike.service.SpeedelecService;
-import test.task.ecobike.service.main.ShowCatalogService;
+import test.task.ecobike.service.console.ShowCatalogService;
 
 @Service
 @AllArgsConstructor
@@ -32,7 +32,7 @@ public class ShowCatalogServiceImpl implements ShowCatalogService {
             System.out.println(foldingBikeMapper.getResponseStringFromFoldingBike(bike));
         }
         for(Speedelec bike: speedelecService.getAll()) {
-            System.out.println(speedelecMapper.getSpeedlecResponseStringFromSpeedlec(bike));
+            System.out.println(speedelecMapper.getResponseStringFromSpeedlec(bike));
         }
     }
 }

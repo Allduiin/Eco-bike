@@ -16,10 +16,10 @@ public class SpeedelecMapper {
         return dto;
     }
 
-    public String getSpeedlecResponseStringFromSpeedlec(Speedelec bike) {
+    public String getResponseStringFromSpeedlec(Speedelec bike) {
         SpeedelecResponseDto dto = getSpeedelecResponseDtoFromSpeedelec(bike);
         return "SPEEDELEC " + dto.getBrand() + " with "
-                + dto.getBatteryCapacity() + " mAh battery and"
+                + dto.getBatteryCapacity() + " mAh battery and "
                 + (dto.getAvailabilityOfLights() ? "no" : "")
                 + " head/tail light.\n" + "Price: " + dto.getPrice()
                 + " euros.";

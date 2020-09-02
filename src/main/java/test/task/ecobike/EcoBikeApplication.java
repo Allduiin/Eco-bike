@@ -4,17 +4,10 @@ import java.io.IOException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import test.task.ecobike.model.Speedelec;
-import test.task.ecobike.model.dto.request.EBikeRequestDto;
-import test.task.ecobike.model.dto.request.FoldingBikeRequestDto;
-import test.task.ecobike.model.dto.request.SpeedelecRequestDto;
-import test.task.ecobike.service.EBikeService;
-import test.task.ecobike.service.FoldingBikeService;
-import test.task.ecobike.service.MainService;
 import test.task.ecobike.service.ReadFromFileService;
-import test.task.ecobike.service.SpeedelecService;
-import test.task.ecobike.service.main.AddNewBikeService;
-import test.task.ecobike.service.main.ShowCatalogService;
+import test.task.ecobike.service.console.AddNewBikeService;
+import test.task.ecobike.service.console.SearchService;
+import test.task.ecobike.service.console.ShowCatalogService;
 
 @SpringBootApplication
 public class EcoBikeApplication {
@@ -26,9 +19,8 @@ public class EcoBikeApplication {
         ShowCatalogService showCatalogService = run.getBean(ShowCatalogService.class);
         showCatalogService.showCatalog();
 
-        AddNewBikeService addNewBikeService = run.getBean(AddNewBikeService.class);
-        addNewBikeService.addNewBike();
-
+        SearchService searchService = run.getBean(SearchService.class);
+        searchService.Search();
 
     }
 }

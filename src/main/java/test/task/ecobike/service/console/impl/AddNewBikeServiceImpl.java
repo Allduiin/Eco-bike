@@ -1,6 +1,5 @@
-package test.task.ecobike.service.main.impl;
+package test.task.ecobike.service.console.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import lombok.AllArgsConstructor;
@@ -13,7 +12,7 @@ import test.task.ecobike.model.abstraction.ElectricBike;
 import test.task.ecobike.service.EBikeService;
 import test.task.ecobike.service.FoldingBikeService;
 import test.task.ecobike.service.SpeedelecService;
-import test.task.ecobike.service.main.AddNewBikeService;
+import test.task.ecobike.service.console.AddNewBikeService;
 
 @Service
 @AllArgsConstructor
@@ -27,27 +26,22 @@ public class AddNewBikeServiceImpl implements AddNewBikeService {
         try (Scanner in = new Scanner(System.in)) {
             System.out.println("Please write type of bike " +
                     "as written here: e-bike, speedelec, folding bike");
-            int x = 0;
-            while (x == 0) {
+            while (true) {
                 switch (in.nextLine()) {
                     case ("e-bike"):
                         addNewEBike(in);
-                        x = 1;
-                        break;
+                        return true;
                     case ("speedelec"):
                         addNewSpeedelec(in);
-                        x = 1;
-                        break;
+                        return true;
                     case ("folding bike"):
                         addNewFoldingBike(in);
-                        x = 1;
-                        break;
+                        return true;
                     default:
                         System.out.println("not detected type of bikes, please try again");
                 }
             }
         }
-        return true;
     }
 
     private boolean addNewFoldingBike(Scanner in) {
