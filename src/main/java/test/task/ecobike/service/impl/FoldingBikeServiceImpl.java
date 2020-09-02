@@ -23,7 +23,8 @@ public class FoldingBikeServiceImpl implements FoldingBikeService {
 
     @Override
     public List<FoldingBike> getByParams(FoldingBikeRequestDto foldingBikeRequestDto) {
-        FoldingBike foldingBike = foldingBikeMapper.getFoldingBikeFromFoldingBikeRequest(foldingBikeRequestDto);
+        FoldingBike foldingBike = foldingBikeMapper
+                .getFoldingBikeFromFoldingBikeRequest(foldingBikeRequestDto);
         return foldingBikeRepository.findAll(Example.of(foldingBike));
     }
 

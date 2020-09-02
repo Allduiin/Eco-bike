@@ -2,6 +2,7 @@ package test.task.ecobike.service.console.impl;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,27 +31,31 @@ public class SearchServiceImpl implements SearchService {
     private final FoldingBikeMapper foldingBikeMapper;
     private final SpeedelecMapper speedelecMapper;
 
-    @Override
-    public void Search() {
-        try (Scanner in = new Scanner(System.in)) {
-            System.out.println("Please write type of bike that you want to search"
-                    + "as written here: e-bike, speedelec, folding bike");
-            loop:
+    public void search(Scanner in) {
+        System.out.println("Please write type of bike that you want to search"
+                + "as written here: e-bike, speedelec, folding bike");
+
+        try {
             while (true) {
                 switch (in.nextLine()) {
                     case ("e-bike"):
                         searchEBike(in);
-                        break loop;
+                        return;
                     case ("speedelec"):
                         searchSpeedelec(in);
-                        break loop;
+                        return;
                     case ("folding bike"):
                         searchFoldingBike(in);
-                        break loop;
+                        return;
+                    case ("/exit"):
+                        return;
                     default:
                         System.out.println("not detected type of bikes, please try again");
                 }
             }
+        } catch (NoSuchElementException e) {
+            System.out.println("No bikes like this, sorry you can try find "
+                    + "something else or write command \"/exit\"");
         }
     }
 
@@ -73,10 +78,10 @@ public class SearchServiceImpl implements SearchService {
     }
 
     private void searchFoldingBike(Scanner in) {
-        System.out.println("Please write the parameters that you want by what you want search one by one "
-                + "like is written here:\nBrand, Price, Color, Availability Of Lights, Number of gears, Weight,"
-                + " Size of wheels, Number of gears\nAnd write it , if you want to search write \"search\" "
-                + "if you want search");
+        System.out.println("Please write the parameters that you want by what you want search"
+                + " one by one like is written here:\nBrand, Price, Color, Availability Of Lights,"
+                + " Number of gears, Weight, Size of wheels, Number of gears\n"
+                + "And write it , if you want to search write \"search\" if you want search");
         FoldingBikeRequestDto requestDto = new FoldingBikeRequestDto();
         try {
             loop:
@@ -106,7 +111,8 @@ public class SearchServiceImpl implements SearchService {
                     case ("search"):
                         List<FoldingBike> bikes = foldingBikeService.getByParams(requestDto);
                         for (FoldingBike bike : bikes) {
-                            System.out.println(foldingBikeMapper.getResponseStringFromFoldingBike(bike));
+                            System.out.println(foldingBikeMapper
+                                    .getResponseStringFromFoldingBike(bike));
                         }
                         break loop;
                     default:
@@ -119,9 +125,12 @@ public class SearchServiceImpl implements SearchService {
         }
     }
 
-    private ElectricBikeRequestDto addElectricBikeParams(ElectricBikeRequestDto electricBikeRequestDto, Scanner in) {
-        System.out.println("Please write the parameters that you want by what you want search one by one\n"
-                + "like is written here: Brand, Price, Color, Battery capacity, Max speed, Weight\n"
+    private ElectricBikeRequestDto addElectricBikeParams(
+            ElectricBikeRequestDto electricBikeRequestDto,
+            Scanner in) {
+        System.out.println("Please write the parameters that you want by what you want "
+                + "search one by one\nlike is written here: Brand, Price, Color, Battery "
+                + "capacity, Max speed, Weight\n"
                 + "And write it , if you want to search write \"search\" "
                 + "if you want search");
         try {

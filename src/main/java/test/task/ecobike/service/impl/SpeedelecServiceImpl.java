@@ -23,7 +23,8 @@ public class SpeedelecServiceImpl implements SpeedelecService {
 
     @Override
     public List<Speedelec> getByParams(SpeedelecRequestDto speedelecRequestDto) {
-        Speedelec speedelec = speedelecMapper.getSpeedelecFromSpeedelecRequestDto(speedelecRequestDto);
+        Speedelec speedelec = speedelecMapper
+                .getSpeedelecFromSpeedelecRequestDto(speedelecRequestDto);
         return speedelecRepository.findAll(Example.of(speedelec));
     }
 

@@ -22,24 +22,25 @@ public class AddNewBikeServiceImpl implements AddNewBikeService {
     private final SpeedelecService speedelecService;
 
     @Override
-    public boolean addNewBike() {
-        try (Scanner in = new Scanner(System.in)) {
-            System.out.println("Please write type of bike " +
-                    "as written here: e-bike, speedelec, folding bike");
-            while (true) {
-                switch (in.nextLine()) {
-                    case ("e-bike"):
-                        addNewEBike(in);
-                        return true;
-                    case ("speedelec"):
-                        addNewSpeedelec(in);
-                        return true;
-                    case ("folding bike"):
-                        addNewFoldingBike(in);
-                        return true;
-                    default:
-                        System.out.println("not detected type of bikes, please try again");
-                }
+    public boolean addNewBike(Scanner in) {
+        System.out.println("Please write type of bike "
+                + "as written here: e-bike, speedelec, folding bike");
+        while (true) {
+            switch (in.nextLine()) {
+                case ("e-bike"):
+                    addNewEBike(in);
+                    return true;
+                case ("speedelec"):
+                    addNewSpeedelec(in);
+                    return true;
+                case ("folding bike"):
+                    addNewFoldingBike(in);
+                    return true;
+                case ("/exit"):
+                    return true;
+                default:
+                    System.out.println("not detected type of bikes, please"
+                            + " try again or write \"/exit\"");
             }
         }
     }
@@ -52,6 +53,7 @@ public class AddNewBikeServiceImpl implements AddNewBikeService {
         System.out.print("Number of gears: ");
         bike.setNumberOfGears(in.nextLong());
         foldingBikeService.add(bike);
+        System.out.println("Bike was added to database");
         return true;
     }
 
@@ -60,6 +62,7 @@ public class AddNewBikeServiceImpl implements AddNewBikeService {
         addBikeParams(bike, in);
         addElectricBikeParams(bike, in);
         speedelecService.add(bike);
+        System.out.println("Bike was added to database");
         return true;
     }
 

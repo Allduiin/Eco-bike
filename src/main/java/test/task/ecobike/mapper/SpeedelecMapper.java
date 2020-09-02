@@ -1,5 +1,6 @@
 package test.task.ecobike.mapper;
 
+import java.util.StringJoiner;
 import org.springframework.stereotype.Component;
 import test.task.ecobike.model.Speedelec;
 import test.task.ecobike.model.dto.request.SpeedelecRequestDto;
@@ -35,5 +36,17 @@ public class SpeedelecMapper {
         speedelec.setBatteryCapacity(speedelecRequestDto.getBatteryCapacity());
         speedelec.setMaxSpeed(speedelecRequestDto.getMaxSpeed());
         return speedelec;
+    }
+
+    public String convertSpeedelecToString(Speedelec bike) {
+        StringJoiner joiner = new StringJoiner("; ");
+        joiner.add(bike.getBrand());
+        joiner.add(bike.getMaxSpeed().toString());
+        joiner.add(bike.getWeight().toString());
+        joiner.add(bike.getAvailabilityOfLights().toString());
+        joiner.add(bike.getBatteryCapacity().toString());
+        joiner.add(bike.getColor());
+        joiner.add(bike.getPrice().toString());
+        return joiner.toString();
     }
 }

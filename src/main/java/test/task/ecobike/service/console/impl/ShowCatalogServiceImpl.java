@@ -25,13 +25,13 @@ public class ShowCatalogServiceImpl implements ShowCatalogService {
 
     @Override
     public void showCatalog() {
-        for(EBike bike: ebikeService.getAll()) {
+        for (EBike bike : ebikeService.getAll()) {
             System.out.println(ebikeMapper.getResponseStringFromEBike(bike));
         }
-        for(FoldingBike bike: foldingBikeService.getAll()) {
+        for (FoldingBike bike : foldingBikeService.getAll()) {
             System.out.println(foldingBikeMapper.getResponseStringFromFoldingBike(bike));
         }
-        for(Speedelec bike: speedelecService.getAll()) {
+        for (Speedelec bike : speedelecService.getAll()) {
             System.out.println(speedelecMapper.getResponseStringFromSpeedlec(bike));
         }
     }

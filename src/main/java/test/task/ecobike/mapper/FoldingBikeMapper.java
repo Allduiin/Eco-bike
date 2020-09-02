@@ -1,5 +1,6 @@
 package test.task.ecobike.mapper;
 
+import java.util.StringJoiner;
 import org.springframework.stereotype.Component;
 import test.task.ecobike.model.FoldingBike;
 import test.task.ecobike.model.dto.request.FoldingBikeRequestDto;
@@ -26,7 +27,8 @@ public class FoldingBikeMapper {
                 + " euros.";
     }
 
-    public FoldingBike getFoldingBikeFromFoldingBikeRequest(FoldingBikeRequestDto foldingBikeRequestDto) {
+    public FoldingBike getFoldingBikeFromFoldingBikeRequest(
+            FoldingBikeRequestDto foldingBikeRequestDto) {
         FoldingBike foldingBike = new FoldingBike();
         foldingBike.setBrand(foldingBikeRequestDto.getBrand());
         foldingBike.setPrice(foldingBikeRequestDto.getPrice());
@@ -36,5 +38,17 @@ public class FoldingBikeMapper {
         foldingBike.setNumberOfGears(foldingBikeRequestDto.getNumberOfGears());
         foldingBike.setSizeOfTheWheels(foldingBikeRequestDto.getSizeOfTheWheels());
         return foldingBike;
+    }
+
+    public String convertFoldingBikeToString(FoldingBike bike) {
+        StringJoiner joiner = new StringJoiner("; ");
+        joiner.add(bike.getBrand());
+        joiner.add(bike.getSizeOfTheWheels().toString());
+        joiner.add(bike.getNumberOfGears().toString());
+        joiner.add(bike.getWeight().toString());
+        joiner.add(bike.getAvailabilityOfLights().toString());
+        joiner.add(bike.getColor());
+        joiner.add(bike.getPrice().toString());
+        return joiner.toString();
     }
 }
