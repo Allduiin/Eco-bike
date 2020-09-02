@@ -2,7 +2,9 @@ package test.task.ecobike.service.impl;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import test.task.ecobike.mapper.EBikeMapper;
 import test.task.ecobike.model.EBike;
 import test.task.ecobike.model.dto.request.EBikeRequestDto;
 import test.task.ecobike.repository.EBikeRepository;
@@ -12,6 +14,7 @@ import test.task.ecobike.service.EBikeService;
 @AllArgsConstructor
 public class EBikeServiceImpl implements EBikeService {
     private EBikeRepository ebikeRepository;
+    private EBikeMapper ebikeMapper;
 
     @Override
     public EBike add(EBike ebike) {
@@ -19,12 +22,13 @@ public class EBikeServiceImpl implements EBikeService {
     }
 
     @Override
-    public EBike getByParams(EBikeRequestDto ebikeRequestDto) {
-        return null;
+    public List<EBike> getByParams(EBikeRequestDto ebikeRequestDto) {
+        EBike ebike = ebikeMapper.getEBikeFromEBikeRequestDto(ebikeRequestDto);
+        return ebikeRepository.findAll(Example.of(ebike));
     }
 
     @Override
     public List<EBike> getAll() {
-        return null;
+        return ebikeRepository.findAll();
     }
 }

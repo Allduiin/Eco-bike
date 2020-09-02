@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import test.task.ecobike.mapper.SpeedelecMapper;
 import test.task.ecobike.model.Speedelec;
 import test.task.ecobike.model.dto.request.SpeedelecRequestDto;
 import test.task.ecobike.repository.SpeedelecRepository;
@@ -13,6 +14,7 @@ import test.task.ecobike.service.SpeedelecService;
 @AllArgsConstructor
 public class SpeedelecServiceImpl implements SpeedelecService {
     private SpeedelecRepository speedelecRepository;
+    private SpeedelecMapper speedelecMapper;
 
     @Override
     public Speedelec add(Speedelec speedelec) {
@@ -20,11 +22,10 @@ public class SpeedelecServiceImpl implements SpeedelecService {
     }
 
     @Override
-    public Speedelec getByParams(SpeedelecRequestDto speedelecRequestDto) {
-        // Need to create Mappers
-        Speedelec speedelec = new Speedelec();
-        return speedelecRepository.findOne(Example.of(speedelec))
-                .orElseThrow(() -> new RuntimeException("Can not find speedelec by params"));
+    public List<Speedelec> getByParams(SpeedelecRequestDto speedelecRequestDto) {
+        Speedelec speedelec = speedelecMapper
+                .getSpeedelecFromSpeedelecRequestDto(speedelecRequestDto);
+        return speedelecRepository.findAll(Example.of(speedelec));
     }
 
     @Override

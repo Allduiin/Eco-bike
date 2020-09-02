@@ -14,7 +14,7 @@ public abstract class Bike {
     @NotNull
     private String color;
     @NotNull
-    private boolean availabilityOfLights;
+    private Boolean availabilityOfLights;
     @NotNull
     private Long weight;
 }
