@@ -18,6 +18,7 @@ import test.task.ecobike.model.dto.request.abstraction.ElectricBikeRequestDto;
 import test.task.ecobike.service.EBikeService;
 import test.task.ecobike.service.FoldingBikeService;
 import test.task.ecobike.service.SpeedelecService;
+import test.task.ecobike.service.console.ConsoleInputChecker;
 import test.task.ecobike.service.console.SearchService;
 
 @Service

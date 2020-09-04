@@ -1,4 +1,4 @@
-package test.task.ecobike.service.console.impl;
+package test.task.ecobike.service.console;
 
 import java.util.Scanner;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,8 @@ public class ConsoleInputChecker {
             if (str.matches("[1-9][0-9]*")) {
                 return Long.parseLong(str);
             } else {
-                System.out.println("Incorrect input\nPlease enter positive number without any other symbols");
+                System.out.println("Incorrect input\n"
+                        + "Please enter positive number without any other symbols");
             }
         }
     }

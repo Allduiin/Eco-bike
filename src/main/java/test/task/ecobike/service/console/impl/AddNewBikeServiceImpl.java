@@ -12,6 +12,7 @@ import test.task.ecobike.service.EBikeService;
 import test.task.ecobike.service.FoldingBikeService;
 import test.task.ecobike.service.SpeedelecService;
 import test.task.ecobike.service.console.AddNewBikeService;
+import test.task.ecobike.service.console.ConsoleInputChecker;
 
 @Service
 @AllArgsConstructor
