@@ -19,7 +19,7 @@ public class WorkCycle {
             + "/write_to_file - you can write to new or existed file our catalog\n"
             + "/stop - stops program\n"
             + "/help - if you want to see commands";
-    private static final String FILE_PATH = "D:\\Java\\ecobike\\src\\main\\resources\\TestFile.txt";
+    private static final String FILE_PATH = "D:\\Java\\ecobike\\src\\main\\resources\\ecobike.txt";
     private final AddNewBikeService addNewBikeService;
     private final ShowCatalogService showCatalogService;
     private final SearchService searchService;
