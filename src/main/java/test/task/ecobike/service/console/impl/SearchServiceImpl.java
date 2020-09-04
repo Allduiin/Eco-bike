@@ -2,7 +2,6 @@ package test.task.ecobike.service.console.impl;
 
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,32 +29,27 @@ public class SearchServiceImpl implements SearchService {
     private final EBikeMapper ebikeMapper;
     private final FoldingBikeMapper foldingBikeMapper;
     private final SpeedelecMapper speedelecMapper;
+    private final ConsoleInputChecker consoleInputChecker;
 
     public void search(Scanner in) {
         System.out.println("Please write type of bike that you want to search"
                 + "as written here: e-bike, speedelec, folding bike");
-
-        try {
-            while (true) {
-                switch (in.nextLine()) {
-                    case ("e-bike"):
-                        searchEBike(in);
-                        return;
-                    case ("speedelec"):
-                        searchSpeedelec(in);
-                        return;
-                    case ("folding bike"):
-                        searchFoldingBike(in);
-                        return;
-                    case ("/exit"):
-                        return;
-                    default:
-                        System.out.println("not detected type of bikes, please try again");
-                }
+        while (true) {
+            switch (in.nextLine()) {
+                case ("e-bike"):
+                    searchEBike(in);
+                    return;
+                case ("speedelec"):
+                    searchSpeedelec(in);
+                    return;
+                case ("folding bike"):
+                    searchFoldingBike(in);
+                    return;
+                case ("/exit"):
+                    return;
+                default:
+                    System.out.println("not detected type of bikes, please try again");
             }
-        } catch (NoSuchElementException e) {
-            System.out.println("No bikes like this, sorry you can try find "
-                    + "something else or write command \"/exit\"");
         }
     }
 
@@ -79,7 +73,7 @@ public class SearchServiceImpl implements SearchService {
 
     private void searchFoldingBike(Scanner in) {
         System.out.println("Please write the parameters that you want by what you want search"
-                + " one by one like is written here:\nBrand, Price, Color, Availability Of Lights,"
+                + " one by one like is written here:\nBrand, Price, Color, Availability of lights,"
                 + " Number of gears, Weight, Size of wheels, Number of gears\n"
                 + "And write it , if you want to search write \"search\" if you want search");
         FoldingBikeRequestDto requestDto = new FoldingBikeRequestDto();
@@ -89,24 +83,33 @@ public class SearchServiceImpl implements SearchService {
                 switch (in.nextLine()) {
                     case ("Brand"):
                         requestDto.setBrand(in.nextLine());
+                        System.out.println("Brand was added");
                         break;
                     case ("Price"):
-                        requestDto.setPrice(in.nextLong());
+                        requestDto.setPrice(consoleInputChecker.readLongFromScanner(in));
+                        System.out.println("Price was added");
                         break;
                     case ("Color"):
                         requestDto.setColor(in.nextLine());
+                        System.out.println("Color was added");
                         break;
                     case ("Availability of lights"):
-                        requestDto.setAvailabilityOfLights(in.nextBoolean());
+                        requestDto.setAvailabilityOfLights(consoleInputChecker
+                                .readBooleanFromScanner(in));
+                        System.out.println("Availability of lights was added");
                         break;
                     case ("Weight"):
-                        requestDto.setWeight(in.nextLong());
+                        requestDto.setWeight(consoleInputChecker.readLongFromScanner(in));
+                        System.out.println("Weight was added");
                         break;
                     case ("Size of wheels"):
-                        requestDto.setSizeOfTheWheels(in.nextLong());
+                        requestDto.setSizeOfTheWheels(consoleInputChecker
+                                .readLongFromScanner(in));
+                        System.out.println("Size of wheels was added");
                         break;
                     case ("Number of gears"):
-                        requestDto.setNumberOfGears(in.nextLong());
+                        requestDto.setNumberOfGears(consoleInputChecker.readLongFromScanner(in));
+                        System.out.println("Number of gears was added");
                         break;
                     case ("search"):
                         List<FoldingBike> bikes = foldingBikeService.getByParams(requestDto);
@@ -130,7 +133,7 @@ public class SearchServiceImpl implements SearchService {
             Scanner in) {
         System.out.println("Please write the parameters that you want by what you want "
                 + "search one by one\nlike is written here: Brand, Price, Color, Battery "
-                + "capacity, Max speed, Weight\n"
+                + "capacity, Max speed, Weight, Availability of lights\n"
                 + "And write it , if you want to search write \"search\" "
                 + "if you want search");
         try {
@@ -142,7 +145,8 @@ public class SearchServiceImpl implements SearchService {
                         System.out.println("Brand was added");
                         break;
                     case ("Price"):
-                        electricBikeRequestDto.setPrice(in.nextLong());
+                        electricBikeRequestDto
+                                .setPrice(consoleInputChecker.readLongFromScanner(in));
                         System.out.println("Price was added");
                         break;
                     case ("Color"):
@@ -150,19 +154,23 @@ public class SearchServiceImpl implements SearchService {
                         System.out.println("Color was added");
                         break;
                     case ("Availability of lights"):
-                        electricBikeRequestDto.setAvailabilityOfLights(in.nextBoolean());
+                        electricBikeRequestDto.setAvailabilityOfLights(
+                                consoleInputChecker.readBooleanFromScanner(in));
                         System.out.println("Availability of lights was added");
                         break;
                     case ("Weight"):
-                        electricBikeRequestDto.setWeight(in.nextLong());
+                        electricBikeRequestDto.setWeight(
+                                consoleInputChecker.readLongFromScanner(in));
                         System.out.println("Weight was added");
                         break;
                     case ("Battery capacity"):
-                        electricBikeRequestDto.setBatteryCapacity(in.nextLong());
+                        electricBikeRequestDto.setBatteryCapacity(
+                                consoleInputChecker.readLongFromScanner(in));
                         System.out.println("Battery capacity was added");
                         break;
                     case ("Max speed"):
-                        electricBikeRequestDto.setMaxSpeed(in.nextLong());
+                        electricBikeRequestDto.setMaxSpeed(
+                                consoleInputChecker.readLongFromScanner(in));
                         System.out.println("Max speed was added");
                         break;
                     case ("search"):

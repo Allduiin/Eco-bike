@@ -1,6 +1,5 @@
 package test.task.ecobike.service.console.impl;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +19,7 @@ public class AddNewBikeServiceImpl implements AddNewBikeService {
     private final EBikeService ebikeService;
     private final FoldingBikeService foldingBikeService;
     private final SpeedelecService speedelecService;
+    private final ConsoleInputChecker consoleInputChecker;
 
     @Override
     public boolean addNewBike(Scanner in) {
@@ -49,9 +49,9 @@ public class AddNewBikeServiceImpl implements AddNewBikeService {
         FoldingBike bike = new FoldingBike();
         addBikeParams(bike, in);
         System.out.print("Size of the wheels: ");
-        bike.setSizeOfTheWheels(in.nextLong());
+        bike.setSizeOfTheWheels(consoleInputChecker.readLongFromScanner(in));
         System.out.print("Number of gears: ");
-        bike.setNumberOfGears(in.nextLong());
+        bike.setNumberOfGears(consoleInputChecker.readLongFromScanner(in));
         foldingBikeService.add(bike);
         System.out.println("Bike was added to database");
         return true;
@@ -77,34 +77,24 @@ public class AddNewBikeServiceImpl implements AddNewBikeService {
 
     private Bike addBikeParams(Bike bike, Scanner in) {
         System.out.print("Please enter all params for creation\n");
-        try {
-            System.out.print("Brand: ");
-            bike.setBrand(in.next());
-            System.out.print("Price: ");
-            bike.setPrice(in.nextLong());
-            System.out.print("Color: ");
-            bike.setColor(in.next());
-            System.out.print("availabilityOfLights: ");
-            bike.setAvailabilityOfLights(in.nextBoolean());
-            System.out.print("weight: ");
-            bike.setWeight(in.nextLong());
-        } catch (InputMismatchException | NumberFormatException e) {
-            System.out.println("Incorrect param was written");
-            addBikeParams(bike, in);
-        }
+        System.out.print("Brand: ");
+        bike.setBrand(in.next());
+        System.out.print("Price: ");
+        bike.setPrice(consoleInputChecker.readLongFromScanner(in));
+        System.out.print("Color: ");
+        bike.setColor(in.next());
+        System.out.print("availabilityOfLights: ");
+        bike.setAvailabilityOfLights(consoleInputChecker.readBooleanFromScanner(in));
+        System.out.print("weight: ");
+        bike.setWeight(consoleInputChecker.readLongFromScanner(in));
         return bike;
     }
 
     private ElectricBike addElectricBikeParams(ElectricBike electricBike, Scanner in) {
         System.out.print("Battery capacity: ");
-        try {
-            electricBike.setBatteryCapacity(in.nextLong());
-            System.out.print("Max speed: ");
-            electricBike.setMaxSpeed(in.nextLong());
-        } catch (InputMismatchException | NumberFormatException e) {
-            System.out.println("Incorrect param was written");
-            addElectricBikeParams(electricBike, in);
-        }
+        electricBike.setBatteryCapacity(consoleInputChecker.readLongFromScanner(in));
+        System.out.print("Max speed: ");
+        electricBike.setMaxSpeed(consoleInputChecker.readLongFromScanner(in));
         return electricBike;
     }
 }
